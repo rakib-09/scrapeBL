@@ -25,9 +25,11 @@ def scrape():
             product_image = product_image['src']
             d['product_image'] = product_image
 
-            # name
+            # name & link
             product_name = item.find("a", {"class":"product__name"})
+            product_link = 'https://www.bukalapak.com' + str(product_name.get('href'))
             product_name = product_name.text.replace('\n', "").strip()
+            d['product_link'] = product_link
             d['product_name'] = product_name
 
             # price
@@ -40,7 +42,13 @@ def scrape():
             product_review = product_review.text
             d['product_review'] = product_review
 
+            # link
+            # product_link = item.find("a", {"class":"product-media__link"}, href=True)
+            # product_link = 'https://www.bukalapak.com' + str(product_link.get('href'))
+            # d['product_link'] = product_link
+
             l.append(d)
+
     return l
 
 
