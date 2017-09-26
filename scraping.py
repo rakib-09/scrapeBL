@@ -39,8 +39,11 @@ def scrape():
 
             # review
             product_review = item.find("a", {"class":"review__aggregate"})
-            product_review = product_review.text
-            d['product_review'] = product_review
+            try:
+                product_review = product_review.text
+                d['product_review'] = int(product_review)
+            except:
+                d['product_review'] = 0
 
             # link
             # product_link = item.find("a", {"class":"product-media__link"}, href=True)
