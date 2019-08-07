@@ -7,10 +7,12 @@ def scrape():
     for page in range(0, 3):
         page = page + 1
         base_url = 'https://www.bukalapak.com/promo/serba-serbu-produk-terlaris-bukalapak?from=old-popular-section-3&page=' + str(page)
+        agent = {'user-agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'}
+
         # print(base_url)
 
         # Request URL and Beautiful Parser
-        r = requests.get(base_url)
+        r = requests.get(base_url, headers=agent)
         soup = BeautifulSoup(r.text, "html.parser")
 
         all_product = soup.find_all('div', class_="product-card")
